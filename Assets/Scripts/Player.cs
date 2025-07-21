@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private Transform groundCheckTransform;
     [SerializeField] private LayerMask playerMask;
-    private int superJumpsRemaining;
+    public int superJumpsRemaining;
     private Logic logic;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -53,16 +53,26 @@ public class Player : MonoBehaviour
 
         
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 9)
         {
+            if (other.gameObject.tag == "Dcoin")
+            {
+                logic.AddScore(1);
+                superJumpsRemaining += 1;
+            }
+            else
+            {
+                logic.AddScore(5);
+                superJumpsRemaining += 5;
+            }
             Destroy(other.gameObject);
             //Destroy Coins
-            superJumpsRemaining+=1;
+            //superJumpsRemaining+=1;
         }
     }
-
+    
 
 }

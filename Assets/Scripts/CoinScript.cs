@@ -14,19 +14,24 @@ public class CoinScript : MonoBehaviour
     {
         
     }
-
+    /*
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.layer == 8)
         {
-            if (GameObject.FindGameObjectWithTag("Dcoin"))
+            
+            if (gameObject.tag == "Dcoin")
             {
                 logic.AddScore(1);
+                collision.
             }
             else
             {
                 logic.AddScore(5);
             }
+            
+            //logic.AddScore(3);
         }
     }
+    */
 }
