@@ -10,11 +10,14 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     public int superJumpsRemaining;
     private Logic logic;
+    private SceneChanger sceneChanger;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("LogicC").GetComponent<Logic>();
+        sceneChanger = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<SceneChanger>();
+
         rb = GetComponent<Rigidbody>();
     }
 
@@ -54,9 +57,16 @@ public class Player : MonoBehaviour
         
     }
     
+
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 9)
+        if (other.gameObject.layer == 10)
+        {
+            sceneChanger.WinGame();
+        }
+
+        if (other.gameObject.layer == 9)
         {
             if (other.gameObject.tag == "Dcoin")
             {
