@@ -9,10 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform groundCheckTransform;
     [SerializeField] private LayerMask playerMask;
     private int superJumpsRemaining;
+    private Logic logic;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        logic = GameObject.FindGameObjectWithTag("LogicC").GetComponent<Logic>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
             {
                 jumpPower *= 2;
                 superJumpsRemaining -= 1;
+                logic.RemoveScore(1);
             }
             rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
             jumpKeyWasPressed = false;
