@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector3(horizontalInput * 2, rb.linearVelocity.y, 0);
+        rb.linearVelocity = new Vector3(horizontalInput * 3, rb.linearVelocity.y, 0);
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.2f, playerMask).Length == 0)
         {
             return;
