@@ -2,9 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class SceneChanger : MonoBehaviour
 {
+    public Slider _musicSlider, _sfxSlider;
+
     public static bool gamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject winScreen;
@@ -23,6 +26,26 @@ public class SceneChanger : MonoBehaviour
                 Pause();
             }
         }
+    }
+
+    public void ToggleMusic()
+    {
+        AudioManager.Instance.ToggleMusic();
+    }
+
+    public void MusicVolume()
+    {
+        AudioManager.Instance.MusicVolume(_musicSlider.value);
+    }
+
+    public void ToggleSFX()
+    {
+        AudioManager.Instance.ToggleSFX();
+    }
+
+    public void SFXVolume()
+    {
+        AudioManager.Instance.SFXVolume(_sfxSlider.value);
     }
 
     void OnTriggerEnter(Collider other)
@@ -58,6 +81,7 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene(sceneIntToLoad);
         Resume();
+        AudioManager.Instance.PlayMusic("Theme");
     }
 
     public void OnExitClick()

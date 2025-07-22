@@ -16,6 +16,7 @@ public class DoorController : MonoBehaviour
         pointsRemaining = playerObject.GetComponent<Player>().superJumpsRemaining;
         if (pointsRemaining > 10)
         {
+            AudioManager.Instance.PlaySFX("DoorOpen");
                 Destroy(gameObject);
         }
         

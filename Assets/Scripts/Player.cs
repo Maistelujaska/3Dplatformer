@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
         sceneChanger = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<SceneChanger>();
 
         rb = GetComponent<Rigidbody>();
+        AudioManager.Instance.PlaySFX("Wind");
     }
 
     // Update is called once per frame
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour
 
         if (jumpKeyWasPressed)
         {
+            AudioManager.Instance.PlaySFX("Jump");
             float jumpPower = 8f;
             if(superJumpsRemaining > 0)
             {
@@ -63,11 +65,14 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.layer == 10)
         {
+            AudioManager.Instance.musicSource.Stop();
+            AudioManager.Instance.PlaySFX("WinGame");
             sceneChanger.WinGame();
         }
 
         if (other.gameObject.layer == 9)
         {
+            AudioManager.Instance.PlaySFX("Coin");
             if (other.gameObject.tag == "Dcoin")
             {
                 logic.AddScore(1);
