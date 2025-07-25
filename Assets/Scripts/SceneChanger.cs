@@ -11,6 +11,7 @@ public class SceneChanger : MonoBehaviour
     public static bool gamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject winScreen;
+    public GameObject deathScreen;
 
     // Update is called once per frame
     void Update()
@@ -73,6 +74,13 @@ public class SceneChanger : MonoBehaviour
     public void WinGame()
     {
         winScreen.SetActive(true);
+        Time.timeScale = 0f;
+        gamePaused = true;
+    }
+
+    public void GameEnd()
+    {
+        deathScreen.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
     }

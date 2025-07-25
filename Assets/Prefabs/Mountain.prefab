@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2571118854743697038, guid: 31889876a90549e4e96c699b5d0f46c0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 96d696e614580f748a65eeda58f0812c, type: 2}
     - target: {fileID: 919132149155446097, guid: 31889876a90549e4e96c699b5d0f46c0, type: 3}
       propertyPath: m_Name
       value: Mountain

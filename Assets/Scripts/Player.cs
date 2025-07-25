@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         rb.linearVelocity = new Vector3(horizontalInput * 3, rb.linearVelocity.y, 0);
-        if (Physics.OverlapSphere(groundCheckTransform.position, 0.2f, playerMask).Length == 0)
+        if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
         {
             return;
         }
@@ -63,6 +63,14 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.layer == 11)
+        {
+            //kill player
+            AudioManager.Instance.musicSource.Stop();
+            AudioManager.Instance.PlaySFX("Death");
+            sceneChanger.GameEnd();
+
+        }
         if (other.gameObject.layer == 10)
         {
             AudioManager.Instance.musicSource.Stop();
