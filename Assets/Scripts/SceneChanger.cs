@@ -12,6 +12,8 @@ public class SceneChanger : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject winScreen;
     public GameObject deathScreen;
+    public int lastScene;
+
 
     // Update is called once per frame
     void Update()
@@ -57,6 +59,8 @@ public class SceneChanger : MonoBehaviour
         }
     }
 
+    
+
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -71,11 +75,19 @@ public class SceneChanger : MonoBehaviour
         gamePaused = true;
     }
 
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Resume();
+        AudioManager.Instance.PlayMusic("Theme");
+    }
+
     public void WinGame()
     {
         winScreen.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
+        
     }
 
     public void GameEnd()
@@ -88,6 +100,22 @@ public class SceneChanger : MonoBehaviour
     public void OnStartClick(int sceneIntToLoad)
     {
         SceneManager.LoadScene(sceneIntToLoad);
+        lastScene = sceneIntToLoad;
+        Resume();
+        AudioManager.Instance.PlayMusic("Theme");
+    }
+
+    public void MenuReturn()
+    {
+        lastScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(0);
+        Resume();
+        AudioManager.Instance.PlayMusic("Theme");
+    }
+
+    public void ReturnToLastLevel()
+    {
+        SceneManager.LoadScene(lastScene);
         Resume();
         AudioManager.Instance.PlayMusic("Theme");
     }
